@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "3235e7ca-02b1-4e0c-8a7f-b0decb799b2a",
+		"name": "API_Assignment_5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26777512"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const chai = require('chai');",
+							"const expect = chai.expect;",
+							"",
+							"pm.test(\"Response status code is 201\", function () {",
+							"    const status = pm.response.code;",
+							"    expect(status).to.equal(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John Doe\",\n    \"job\": \"Software Developer\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const chai = require('chai');",
+							"const expect = chai.expect;",
+							"",
+							"pm.test(\"Response status code is 200\", function () {",
+							"    const status = pm.response.code;",
+							"    expect(status).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains expected data\", function () {",
+							"    const body = pm.response.json().data;",
+							"    expect(body).to.have.property('id', 2);",
+							"    expect(body).to.have.property('email', 'janet.weaver@reqres.in');",
+							"    expect(body).to.have.property('first_name', 'Janet');",
+							"    expect(body).to.have.property('last_name', 'Weaver');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const chai = require('chai');",
+							"const expect = chai.expect;",
+							"",
+							"pm.test(\"Response status code is 200\", function () {",
+							"    const status = pm.response.code;",
+							"    expect(status).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains updated user data\", function () {",
+							"    const body = pm.response.json();",
+							"    expect(body).to.have.property('name', 'John Smith');",
+							"    expect(body).to.have.property('email', 'johnsmith@example.com');",
+							"    expect(body).to.have.property('password', 'newpassword');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"John Smith\",\n\"email\": \"johnsmith@example.com\",\n\"password\": \"newpassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const chai = require('chai');",
+							"const expect = chai.expect;",
+							"",
+							"pm.test(\"Response status code is 200\", function () {",
+							"    const status = pm.response.code;",
+							"    expect(status).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains updated user data\", function () {",
+							"    const body = pm.response.json();",
+							"    expect(body).to.have.property('first_name', 'Akash');",
+							"    expect(body).to.have.property('last_name', 'Singh');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"first_name\": \"Akash\",\n\"last_name\": \"Singh\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const chai = require('chai');",
+							"const expect = chai.expect;",
+							"",
+							"pm.test(\"Response status code is 204\", function () {",
+							"    const status = pm.response.code;",
+							"    expect(status).to.equal(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
