@@ -1,0 +1,326 @@
+{
+	"info": {
+		"_postman_id": "4823caeb-9467-4efc-b0e7-7ceffb899bf7",
+		"name": "API_Assignment_10",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26777512"
+	},
+	"item": [
+		{
+			"name": "GET Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"First name is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data[0].first_name).to.equal(\"George\");",
+							"});",
+							"",
+							"pm.test(\"Last name is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data[0].last_name).to.equal(\"Bluth\");",
+							"});",
+							"",
+							"pm.test(\"Email is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data[0].email).to.equal(\"george.bluth@reqres.in\");",
+							"});",
+							"",
+							"pm.test(\"Content type is JSON\", function() {",
+							"    pm.response.to.be.json;",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Content type is JSON\", function() {",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"User data is correct\", function () {",
+							"    pm.expect(pm.response.json().firstName).to.eql(\"Akash\");",
+							"    pm.expect(pm.response.json().lastName).to.eql(\"Singh\");",
+							"    pm.expect(pm.response.json().age).to.eql(23);",
+							"    pm.expect(pm.response.json().gender).to.eql(\"male\");",
+							"    pm.expect(pm.response.json().email).to.eql(\"akash.singh@knoldus.com\");",
+							"    pm.expect(pm.response.json().phone).to.eql(\"+91 9667305597\");",
+							"    pm.expect(pm.response.json().username).to.eql(\"akash1874\");",
+							"    pm.expect(pm.response.json().password).to.eql(\"testDummy\");",
+							"    pm.expect(pm.response.json().DateOfBirth).to.eql(\"1999-07-15\");",
+							"    pm.expect(pm.response.json().bloodGroup).to.eql(\"AB +\");",
+							"    pm.expect(pm.response.json().height).to.eql(165);",
+							"    pm.expect(pm.response.json().weight).to.eql(71.1);",
+							"    pm.expect(pm.response.json().eyeColor).to.eql(\"black\");",
+							"    pm.expect(pm.response.json().hair.color).to.eql(\"Black\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"firstName\": \"Akash\",\n    \"lastName\": \"Singh\",\n    \"age\": 23,\n    \"gender\": \"male\",\n    \"email\": \"akash.singh@knoldus.com\",\n    \"phone\": \"+91 9667305597\",\n    \"username\": \"akash1874\",\n    \"password\": \"testDummy\",\n    \"DateOfBirth\": \"1999-07-15\",\n    \"bloodGroup\": \"AB +\",\n    \"height\": 165,\n    \"weight\": 71.1,\n    \"eyeColor\": \"black\",\n    \"hair\": {\n        \"color\": \"Black\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/1",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content type is JSON\", function() {",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Response body has updated user details\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"1\");",
+							"    pm.expect(pm.response.json().firstName).to.eql(\"Akash\");",
+							"    pm.expect(pm.response.json().lastName).to.eql(\"Singh\");",
+							"    pm.expect(pm.response.text()).to.include(\"akash.singh@knoldus.com\");",
+							"    pm.expect(pm.response.text()).to.include(\"+91 9667305597\");",
+							"    pm.expect(pm.response.text()).to.include(\"1999-07-15\");",
+							"    pm.expect(pm.response.text()).to.include(\"AB +\");",
+							"    pm.expect(pm.response.text()).to.include(\"170\");",
+							"    pm.expect(pm.response.text()).to.include(\"71.1\");",
+							"    pm.expect(pm.response.text()).to.include(\"black\");",
+							"    pm.expect(pm.response.text()).to.include(\"Black\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"firstName\": \"Akash\",\n    \"lastName\": \"Singh\",\n    \"age\": 23,\n    \"gender\": \"male\",\n    \"email\": \"akash.singh@knoldus.com\",\n    \"phone\": \"+91 9667305597\",\n    \"username\": \"akash1874\",\n    \"DateOfBirth\": \"1999-07-15\",\n    \"bloodGroup\": \"AB +\",\n    \"height\": 170,\n    \"weight\": 71.1,\n    \"eyeColor\": \"black\",\n    \"hair\": {\n        \"color\": \"Black\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/1",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check that the response status code is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content type is JSON\", function() {",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"// Check that the response body includes the updated user's ID",
+							"pm.test(\"Response body has updated data.\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"1\");",
+							"    pm.expect(pm.response.json().username).to.eql(\"akash1800\");",
+							"    pm.expect(pm.response.json().DateOfBirth).to.eql(\"1999-07-15\");",
+							"    pm.expect(pm.response.json().bloodGroup).to.eql(\"AB +\");",
+							"    pm.expect(pm.response.json().height).to.eql(170);",
+							"    pm.expect(pm.response.json().weight).to.eql(71.1);",
+							"    pm.expect(pm.response.json().eyeColor).to.eql(\"black\");",
+							"    pm.expect(pm.response.json().hair.color).to.eql(\"Black\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"username\": \"akash1800\",\n    \"DateOfBirth\": \"1999-07-15\",\n    \"bloodGroup\": \"AB +\",\n    \"height\": 170,\n    \"weight\": 71.1,\n    \"eyeColor\": \"black\",\n    \"hair\": {\n        \"color\": \"Black\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/1",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/1",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
